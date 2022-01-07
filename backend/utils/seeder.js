@@ -1,0 +1,31 @@
+const Room = require('../models/room');
+const dotenv = require('dotenv');
+const connectDatabase = require('../config/database');
+
+
+const rooms = require('../data/room.json');
+
+
+//Setting dotenv file
+dotenv.config({path: './config/config.env'})
+
+
+connectDatabase();
+
+const seedRooms = async () =>{
+    try {
+        await Room.deleteMany();
+        console.log('Rooms are deleted');
+
+        await Room.insertMany(rooms)
+        console.log('All Rooms are added ')
+        
+        process.exit();
+
+    } catch(error){
+        console.log(error.message);
+        process.exit();
+    }
+}
+
+seedRooms()

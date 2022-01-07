@@ -1,0 +1,106 @@
+[
+    {
+        "name": "single economy",
+        "price": "100",
+        "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
+        "ratings": 3,
+        "images": [
+            {
+                "url": "https://images.pexels.com/photos/3773577/pexels-photo-3773577.png?cs=srgb&dl=pexels-curtis-adams-3773577.jpg&fm=jpg"
+            }
+        ],
+        "roomsType": "Single",
+        "capacity": 1,
+        "allocator": "Michel",
+        "reservations": [
+            {
+                "checkIn": {
+                    "$date": "2022-03-15"
+                },
+                "checkOut": {
+                    "$date": "2022-04-01"
+                }
+            }
+        ],
+        "numOfReviews": 32,
+        "reviews": []
+    },
+    {
+        "name": "single economy",
+        "price": "150",
+        "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
+        "ratings": 2.5,
+        "images": [
+            {
+                "url": "https://images.pexels.com/photos/1571450/pexels-photo-1571450.jpeg?cs=srgb&dl=pexels-vecislavas-popa-1571450.jpg&fm=jpg"
+            }
+        ],
+        "roomsType": "Single",
+        "capacity": 1,
+        "allocator": "Joliette",
+        "reservations": [
+            {
+                "checkIn": {
+                    "$date": "2022-02-06"
+                },
+                "checkOut": {
+                    "$date": "2022-02-16"
+                }
+            }
+        ],
+        "numOfReviews": 50,
+        "reviews": []
+    },
+    {
+        "name": "room double ",
+        "price": "250",
+        "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
+        "ratings": 4.2,
+        "images": [
+            {
+                "url": "https://images.pexels.com/photos/210604/pexels-photo-210604.jpeg?cs=srgb&dl=pexels-pixabay-210604.jpg&fm=jpg"
+            }
+        ],
+        "roomsType": "Double",
+        "capacity": 2,
+        "allocator": "Nour",
+        "reservations": [
+            {
+                "checkIn": {
+                    "$date": "2022-06-15"
+                },
+                "checkOut": {
+                    "$date": "2022-07-15"
+                }
+            }
+        ],
+        "numOfReviews": 24,
+        "reviews": []
+    },
+    {
+        "name": "Double economy",
+        "price": "230",
+        "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
+        "ratings": 3,
+        "images": [
+            {
+                "url": "https://images.pexels.com/photos/3773575/pexels-photo-3773575.png?cs=srgb&dl=pexels-curtis-adams-3773575.jpg&fm=jpg"
+            }
+        ],
+        "roomsType": "Double",
+        "capacity": 2,
+        "allocator": "Alex",
+        "reservations": [
+            {
+                "checkIn": {
+                    "$date": "2022-08-16"
+                },
+                "checkOut": {
+                    "$date": "2022-10-08"
+                }
+            }
+        ],
+        "numOfReviews": 62,
+        "reviews": []
+    }
+]
