@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
-import { Button } from './Button'
-import { IoArrowBack, IoArrowForward } from 'react-icons/io5'
-
+import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
 
 
 const arrowButton = css`
@@ -61,10 +59,14 @@ const BannerContent = styled.div`
     }
     p{
         margin-bottom: 1.2rem;
+        font-size: 30px;
         text-shadow: 0px 0px 20px rgba(0,0,0,0.4) ;
     }
+   
+   
 
 `;
+
 const BannerImage = styled.img`
     position: absolute;
     top:0;
@@ -107,12 +109,12 @@ const BannerSlider = styled.div`
 `;
 
 
-const PrevArrow = styled(IoArrowBack)`
+const PrevArrow = styled(FaArrowCircleLeft)`
         ${arrowButton}
 
 `;
 
-const NextArrow = styled(IoArrowForward)`
+const NextArrow = styled(FaArrowCircleRight)`
     ${arrowButton}
 
 `;
@@ -122,10 +124,13 @@ const SliderButtons = styled.div`
     bottom: 50px;
     right: 50px;
     display: flex;
-    z-index: 10;
+    z-index: 10; 
+    font-size: 3rem;
+  
 
 
 `;
+
 const Banner = ({ slides }) => {
 
     const [current, setCurrent] = useState(0);
@@ -153,7 +158,8 @@ const Banner = ({ slides }) => {
                                     <BannerContent>
                                         <h1>{slide.title}</h1>
                                         <p>{slide.price}</p>
-                                        <Button primary='true' css={`max-width: 160px;`}>{slide.label}</Button>
+                                        
+                                        <a primary="true" round="true" big="true" class="sc-bdvvtL bsVknV" href="/">{slide.label}</a>
                                     </BannerContent>
                                 </BannerSlider>
 
