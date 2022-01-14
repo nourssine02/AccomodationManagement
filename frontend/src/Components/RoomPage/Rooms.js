@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import Cart from '../../Cart';
+import Cart from '../Main/Cart';
 import { CartData1, CartData2, CartData3, CartData4 } from '../../Data/CartData';
 
 const Container = styled.div`

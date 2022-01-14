@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import "./Register.css"
-//import axios from "axios"
-//import { useHistory } from "react-router-dom"
+import "./user.css"
+import Image from '../../Assets/images/banner2.jpg';
+import axios from "axios"
 
 const Register = () => {
 
@@ -11,8 +11,8 @@ const Register = () => {
         name: "",
         email: "",
         password: "",
-        reEnterPassword: ""
     })
+   // const [error, setError] = useState(false);
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -22,47 +22,46 @@ const Register = () => {
         })
     }
 
-    // const register = () => {
-    //     const { name, email, password, reEnterPassword } = user
-    //     if (name && email && password && (password === reEnterPassword)) {
-    //         axios.post("http://localhost:9002/register", user)
-    //             .then(res => {
-    //                 alert(res.data.message)
-    //                 history.push("/login")
-    //             })
-    //     } else {
-    //         alert("invlid input")
+    // const handleSubmit = async (e) => {
+    //     const { name, email, password } = user
+    //     e.preventDefault();
+    //     try {
+    //         const res = await axios.post('/Register', {
+    //             name, email, password
+    //         });
+    //         res.data && window.location.replace("/Login");
+
+    //     } catch (err) {
+    //         setError(true);
     //     }
 
     // }
+    const register = () => {
+        const { name, email, password } = user
+        if (name && email && password ) {
+            alert("posted");
+            axios.post("http://localhost:4000/api/v1/register", user)
+                .then(res => {
+                    alert(res.data.message)
+                    //navigate.push("/login")
+                })
+        } else {
+            alert("invlid input")
+        }
+
+    }
 
     return (
-        // <div className="register">
-        //     {console.log("User", user)}
-        //     <h1>Register</h1>
-        //     <input type="text" name="name" value={user.name} placeholder="Your Name" onChange={handleChange}></input>
-        //     <input type="text" name="email" value={user.email} placeholder="Your Email" onChange={handleChange}></input>
-        //     <input type="password" name="password" value={user.password} placeholder="Your Password" onChange={handleChange}></input>
-        //     <input type="password" name="reEnterPassword" value={user.reEnterPassword} placeholder="Re-enter Password" onChange={handleChange}></input>
-        //     <div className="button" onClick={Register} >Register</div>
-        //     <div>or</div>
-        //     <div className="button" >Login</div>
-        // </div>
         <>
             ;<section className="container">
                 <article className="half">
-                    <h1>Azure</h1>
-                    <div className="tabs">
-                        <span className="tab signin active">
-                            <a href="#signin">Sign in</a>
-                        </span>
-                        <span className="tab signup">
-                            <a href="#signup">Sign up</a>
-                        </span>
-                    </div>
+                    <h1>Sign Up</h1>
+                    <br></br>
+
                     <div className="content">
+                        {console.log("User", user)}
                         <div className="signup-cont cont">
-                            <form action="#" method="post" encType="multipart/form-data">
+                            <form  method="post">
                                 <input
                                     type="name"
                                     name="name"
@@ -70,6 +69,8 @@ const Register = () => {
                                     className="inpt"
                                     required="required"
                                     placeholder="Your name"
+                                    onChange={handleChange}
+                                    value={user.name}
                                 />
                                 <label htmlFor="name">Your name</label>
                                 <input
@@ -79,6 +80,8 @@ const Register = () => {
                                     className="inpt"
                                     required="required"
                                     placeholder="Your email"
+                                    onChange={handleChange}
+                                    value={user.email}
                                 />
                                 <label htmlFor="email">Your email</label>
                                 <input
@@ -88,47 +91,15 @@ const Register = () => {
                                     className="inpt"
                                     required="required"
                                     placeholder="Your password"
+                                    onChange={handleChange}
+                                    value={user.password}
                                 />
                                 <label htmlFor="password">Your password</label>
+
                                 <div className="submit-wrap">
                                     <input type="submit" defaultValue="Sign up" className="submit" />
-                                    <a href="/" className="more">
+                                    <a href="/" className="more" onClick={register}>
                                         Terms and conditions
-                                    </a>
-                                </div>
-                            </form>
-                        </div>
-                        <div className="signin-cont cont">
-                            <form action="#" method="post" encType="multipart/form-data">
-                                <input
-                                    type="email"
-                                    name="email"
-                                    id="email"
-                                    className="inpt"
-                                    required="required"
-                                    placeholder="Your email"
-                                />
-                                <label htmlFor="email">Your email</label>
-                                <input
-                                    type="password"
-                                    name="password"
-                                    id="password"
-                                    className="inpt"
-                                    required="required"
-                                    placeholder="Your password"
-                                />
-                                <label htmlFor="password">Your password</label>
-                                <input
-                                    type="checkbox"
-                                    id="remember"
-                                    className="checkbox"
-                                    defaultChecked
-                                />
-                                <label htmlFor="remember">Remember me</label>
-                                <div className="submit-wrap">
-                                    <input type="submit" defaultValue="Sign in" className="submit" />
-                                    <a href="/" className="more">
-                                        Forgot your password?
                                     </a>
                                 </div>
                             </form>
@@ -137,8 +108,7 @@ const Register = () => {
                     </div>
                 </article>
                 <div className="half bg" >
-                    <h1>image Here</h1>
-                    i
+                    <img src={Image} alt="bgRegister" />
                 </div>
             </section>
 

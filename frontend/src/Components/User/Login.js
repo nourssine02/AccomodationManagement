@@ -1,7 +1,7 @@
 import React, { useState } from "react"
-import "./Login.css"
+import "./user.css"
+import Image from '../../Assets/images/banner3.jpg';
 //import axios from "axios"
-//import { useHistory } from "react-router-dom"
 
 const Login = ({ setLoginUser }) => {
 
@@ -30,15 +30,66 @@ const Login = ({ setLoginUser }) => {
     // }
 
     return (
-        <div className="login">
-            <h1>Login</h1>
-            <input type="text" name="email" value={user.email} onChange={handleChange} placeholder="Enter your Email"></input>
-            <input type="password" name="password" value={user.password} onChange={handleChange} placeholder="Enter your Password" ></input>
-            <div className="button" onClick={Login}>Login</div>
-            <div>or</div>
-            <div className="button" >Register</div>
-        </div>
+      
+    
+        <>
+            ;<section className="container">
+                <article className="half">
+                    <h1>Sign In</h1>
+
+                    <br></br>
+                    <div className="content">
+                        {console.log("User", user)}
+                        <div className="signin-cont cont">
+                            <form action="#" method="post" encType="multipart/form-data">
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    className="inpt"
+                                    required="required"
+                                    placeholder="Your email"
+                                    value={user.email} 
+                                    onChange={handleChange} 
+                                />
+                                <label htmlFor="email">Your email</label>
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    className="inpt"
+                                    required="required"
+                                    placeholder="Your password"
+                                    value={user.password}
+                                     onChange={handleChange}
+                                />
+                                <label htmlFor="password">Your password</label>
+                                <input
+                                    type="checkbox"
+                                    id="remember"
+                                    className="checkbox"
+                                    defaultChecked
+                                />
+                                <label htmlFor="remember">Remember me</label>
+                                <div className="submit-wrap">
+                                    <input type="submit" defaultValue="Sign in" className="submit" />
+                                    <a href="/" className="more">
+                                        Forgot your password?
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </article>
+                <div className="half bg" >
+                    <img src={Image} alt="bgRegister" />
+                </div>
+            </section>
+
+
+        </>
     )
+
 }
-//onClick={() => history.push("/register")}
 export default Login
