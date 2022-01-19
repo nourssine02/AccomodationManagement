@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
-import { MenuData } from '../../Data/MenuData';
 import { Button } from '../Button';
-import { FaBars } from 'react-icons/fa'
+import { FaBars } from 'react-icons/fa';
+
+
 
 
 const NavLink = css`
@@ -15,11 +16,15 @@ const NavLink = css`
     cursor: pointer;
     text-decoration: none;
 
+    &:hover{
+        color: black;
+    }
+
 `;
 const Logo = styled(Link)`
-    ${NavLink} 
+    ${NavLink}
     font-style: italic;
-   
+
 
 `;
 const Nav = styled.nav`
@@ -71,32 +76,83 @@ const NavBtn = styled.div`
 
 
 `;
+const AdminBtn = styled.div`
+    display: flex;
+    align-items: center;
+    padding-right: 100px;
+`;
+class Navbar extends Component {
 
-const Navbar = ({ toggle }) => {
-    return (
-        <Nav>
-            <Logo to="/" >Dream Home</Logo>
-            <MenuBars onClick={toggle} />
-            <NavMenu>
-                {MenuData.map((item, index) => (
 
-                    <NavMenuLinks to={item.link} key={index}>
-                        {item.title}
-                    </NavMenuLinks>
-                ))}
-            </NavMenu>
-            <NavBtn>
-                <Button to="/Login" primary="true">
-                    Login
-                </Button>
-                &nbsp;
-                &nbsp;
-                <Button to="/Register" primary="true">
-                    Register
-                </Button>
-            </NavBtn>
-        </Nav>
-    )
+    handleLogout = () => {
+        localStorage.clear();
+
+        this.props.setUser(null);
+
+    }
+
+
+    render() {
+        let buttons;
+        if (this.props.user) {
+
+            buttons = (
+
+                <>
+                    <AdminBtn>
+                        <NavMenuLinks to="/admin/users"> Add Users</NavMenuLinks>
+                        <NavMenuLinks to="/admin/users"> Add Rooms</NavMenuLinks>
+                    </AdminBtn>
+
+                    <Button to="/" onClick={this.handleLogout} primary="true" >
+                        Logout
+                    </Button>
+
+
+                </>
+            )
+        } else {
+            buttons = (
+
+                <>
+                    <Button to="/Login" primary="true" >
+                        Login
+                    </Button>
+                    &nbsp;
+                    &nbsp;
+                    <Button to="/Register" primary="true">
+                        Register
+                    </Button>
+
+                </>
+
+            )
+
+        }
+        return (
+            <>
+
+
+                <Nav>
+                    <Logo to="/" >Dream Home</Logo>
+                    <MenuBars />
+
+                    <NavMenu>
+                        <NavMenuLinks to="/"> Home</NavMenuLinks>
+                        <NavMenuLinks to="/Rooms"> Rooms</NavMenuLinks>
+
+                    </NavMenu>
+
+                    <NavBtn>
+
+                        {buttons}
+                    </NavBtn>
+
+
+                </Nav>
+            </>
+
+        )
+    }
 }
-
 export default Navbar

@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { AiFillStar } from 'react-icons/ai'
+import {Link} from 'react-router-dom'
 
 
 
@@ -52,22 +54,43 @@ const CartContent = styled.div`
       margin-bottom: 8px;
       }
 `;
+const Reviews = styled.div`
+  color : yellow; 
+`;
 
 
 
-const Cart = ({ image, alt, title, price }) => {
+const Cart = ({ room }) => {
     return (
         <CartSection>
-            <CartWrapper>
+            
+                <CartWrapper >
 
-                <CartImage src={image} alt={alt} />
+                 
+                    <Link to={`/roomDetails/${room._id}`}>
+                           <CartImage src={room.images[0].url} alt='roomImage'/>
+                    </Link>
+                   
 
-                <CartContent>
-                    <h2>{title}</h2>
-                    <p>{price}</p>
-                </CartContent>
 
-            </CartWrapper>
+                    <CartContent>
+                        <h2>{room.name}</h2>
+                        <Reviews >
+                            <AiFillStar />
+                            <AiFillStar />
+                            <AiFillStar />
+                            <AiFillStar />
+                            <span style={{ 'color': 'black', 'fontSize': '13px' }}> ({room.numOfReviews} Reviews)</span>
+
+
+                        </Reviews>
+
+                        <p>{room.price}$</p>
+                    </CartContent>
+
+
+                </CartWrapper>
+         
         </CartSection>
 
     )

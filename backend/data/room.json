@@ -1,15 +1,25 @@
 [
     {
         "name": "single economy",
+        "address": "Tunise Nabel",
         "price": "100",
         "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
         "ratings": 3,
         "images": [
             {
+                "public_id": "rooms/pexels-curtis-adams-3773577",
                 "url": "https://images.pexels.com/photos/3773577/pexels-photo-3773577.png?cs=srgb&dl=pexels-curtis-adams-3773577.jpg&fm=jpg"
             }
         ],
+        "wifi": "Yes",
+        "fitness_center": "No",
+        "parking": "Yes",
+        "swimmingPool": "Yes",
+        "contactNo": "+912713087074",
         "roomsType": "Single",
+        "status": "Available",
+        "maximumAdultsAllow": 1,
+        "maximumChildsAllow": 0,
         "capacity": 1,
         "allocator": "Michel",
         "reservations": [
@@ -23,19 +33,30 @@
             }
         ],
         "numOfReviews": 32,
-        "reviews": []
+        "reviews": [],
+        "user": "61e1d45d1fcd6968eddbc2cb"
     },
     {
         "name": "single economy",
+        "address": "Tunise Bizerte",
         "price": "150",
         "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
         "ratings": 2.5,
         "images": [
             {
+                "public_id": "rooms/pexels-vecislavas-popa-1571450",
                 "url": "https://images.pexels.com/photos/1571450/pexels-photo-1571450.jpeg?cs=srgb&dl=pexels-vecislavas-popa-1571450.jpg&fm=jpg"
             }
         ],
+        "wifi": "Yes",
+        "fitness_center": "No",
+        "parking": "NO",
+        "swimmingPool": "No",
+        "contactNo": "+912713087074",
         "roomsType": "Single",
+        "status": "Not available",
+        "maximumAdultsAllow": 1,
+        "maximumChildsAllow": 1,
         "capacity": 1,
         "allocator": "Joliette",
         "reservations": [
@@ -49,19 +70,30 @@
             }
         ],
         "numOfReviews": 50,
-        "reviews": []
+        "reviews": [],
+        "user": "61e1d45d1fcd6968eddbc2cb"
     },
     {
         "name": "room double ",
+        "address": "France Paris",
         "price": "250",
         "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
         "ratings": 4.2,
         "images": [
             {
+                "public_id": "rooms/pexels-pixabay-210604",
                 "url": "https://images.pexels.com/photos/210604/pexels-photo-210604.jpeg?cs=srgb&dl=pexels-pixabay-210604.jpg&fm=jpg"
             }
         ],
+        "wifi": "Yes",
+        "fitness_center": "No",
+        "parking": "Yes",
+        "swimmingPool": "No",
+        "contactNo": "+333657271308",
         "roomsType": "Double",
+        "status": "Not available",
+        "maximumAdultsAllow": 2,
+        "maximumChildsAllow": 1,
         "capacity": 2,
         "allocator": "Nour",
         "reservations": [
@@ -75,19 +107,30 @@
             }
         ],
         "numOfReviews": 24,
-        "reviews": []
+        "reviews": [],
+        "user": "61e1d45d1fcd6968eddbc2cb"
     },
     {
         "name": "Double economy",
+        "address": "Paris Nice",
         "price": "230",
         "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
         "ratings": 3,
         "images": [
             {
+                "public_id": "rooms/pexels-curtis-adams-3773575",
                 "url": "https://images.pexels.com/photos/3773575/pexels-photo-3773575.png?cs=srgb&dl=pexels-curtis-adams-3773575.jpg&fm=jpg"
             }
         ],
+        "wifi": "Yes",
+        "fitness_center": "No",
+        "parking": "Yes",
+        "swimmingPool": "Yes",
+        "contactNo": "+912713087074",
         "roomsType": "Double",
+        "status": "Available",
+        "maximumAdultsAllow": 1,
+        "maximumChildsAllow": 0,
         "capacity": 2,
         "allocator": "Alex",
         "reservations": [
@@ -101,6 +144,7 @@
             }
         ],
         "numOfReviews": 62,
-        "reviews": []
+        "reviews": [],
+        "user": "61e1d45d1fcd6968eddbc2cb"
     }
 ]

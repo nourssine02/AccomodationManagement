@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components'
 import { FaArrowCircleLeft, FaArrowCircleRight } from 'react-icons/fa'
+import { Button } from '../Button';
 
 
 const arrowButton = css`
@@ -16,7 +17,6 @@ const arrowButton = css`
 
 
     &:hover{
-        background: #A5A58D;
         transform: scale(1.05);
     }
 `;
@@ -159,7 +159,7 @@ const Banner = ({ slides }) => {
                                         <h1>{slide.title}</h1>
                                         <p>{slide.price}</p>
                                         
-                                        <a primary="true" round="true" big="true" class="sc-bdvvtL bsVknV" href="/">{slide.label}</a>
+                                        <Button primary="true" round="true" big="true" className="sc-bdvvtL bsVknV" to="/rooms">{slide.label}</Button>
                                     </BannerContent>
                                 </BannerSlider>
 

@@ -2,17 +2,18 @@ import React, { useState } from "react"
 import "./user.css"
 import Image from '../../Assets/images/banner2.jpg';
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
-    //const history = useHistory()
 
     const [user, setUser] = useState({
         name: "",
         email: "",
         password: "",
     })
-   // const [error, setError] = useState(false);
+    const [error, setError] = useState("");
+    const navigate = new useNavigate();
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -22,33 +23,24 @@ const Register = () => {
         })
     }
 
-    // const handleSubmit = async (e) => {
-    //     const { name, email, password } = user
-    //     e.preventDefault();
-    //     try {
-    //         const res = await axios.post('/Register', {
-    //             name, email, password
-    //         });
-    //         res.data && window.location.replace("/Login");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const url = "http://localhost:4000/api/v1/register";
+            const {user:res} = await axios.post(url, user);
+            navigate("/Login");
+            alert(res.data.message);
 
-    //     } catch (err) {
-    //         setError(true);
-    //     }
 
-    // }
-    const register = () => {
-        const { name, email, password } = user
-        if (name && email && password ) {
-            alert("posted");
-            axios.post("http://localhost:4000/api/v1/register", user)
-                .then(res => {
-                    alert(res.data.message)
-                    //navigate.push("/login")
-                })
-        } else {
-            alert("invlid input")
+        } catch (error) {
+            if (error.response && 
+                error.response.status >= 400 &&
+                error.response.status <= 500 )
+            { setError(error.response.data.message)}
+           
         }
 
+ 
     }
 
     return (
@@ -61,7 +53,7 @@ const Register = () => {
                     <div className="content">
                         {console.log("User", user)}
                         <div className="signup-cont cont">
-                            <form  method="post">
+                            <form   onSubmit={handleSubmit}>
                                 <input
                                     type="name"
                                     name="name"
@@ -95,10 +87,10 @@ const Register = () => {
                                     value={user.password}
                                 />
                                 <label htmlFor="password">Your password</label>
-
+                                {error && <div className="alert alert-danger">{error}</div>}
                                 <div className="submit-wrap">
                                     <input type="submit" defaultValue="Sign up" className="submit" />
-                                    <a href="/" className="more" onClick={register}>
+                                    <a href="/" className="more">
                                         Terms and conditions
                                     </a>
                                 </div>

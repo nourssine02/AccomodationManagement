@@ -4,8 +4,10 @@ const Room = require('../models/roomModel')
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors')
 
-//create new product => /api/v1/admin/room/new
-exports.newRoom = catchAsyncErrors (async (req, res, next) => {
+//create new rRooms => /api/v1/admin/room/new
+exports.newRoom = catchAsyncErrors(async (req, res, next) => {
+
+    //req.body.user = req.user.id; => for defined user
     const room = Room.create(req.body);
 
     res.status(201).json({
@@ -26,6 +28,8 @@ exports.getRooms = catchAsyncErrors(async (req, res, next) => {
         count: rooms.length,
         rooms
     })
+
+
 })
 
 

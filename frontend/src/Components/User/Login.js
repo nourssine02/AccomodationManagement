@@ -1,16 +1,19 @@
 import React, { useState } from "react"
 import "./user.css"
 import Image from '../../Assets/images/banner3.jpg';
-//import axios from "axios"
+import axios from "axios";
+import { useNavigate , Link } from "react-router-dom";
 
-const Login = ({ setLoginUser }) => {
-
-    //const history = useHistory()
+const Login = () => {
 
     const [user, setUser] = useState({
         email: "",
-        password: ""
+        password: "",
     })
+    const [error, setError] = useState("");
+    
+    const [loggedIn, setLoggedIn] = useState(false);
+    const navigate = new useNavigate();
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -18,21 +21,43 @@ const Login = ({ setLoginUser }) => {
             ...user,
             [name]: value
         })
+       
     }
 
-    // const login = () => {
-    //     axios.post("http://localhost:9002/login", user)
-    //         .then(res => {
-    //             alert(res.data.message)
-    //             setLoginUser(res.data.user)
-    //             history.push("/")
-    //         })
-    // }
+   
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const url = "http://localhost:4000/api/v1/login";
+            const {user : res} = await axios.post(url, user)
+            .then((response) =>{
+                localStorage.setItem('token' , response.data.token);
+                setLoggedIn({loggedIn: true});
+                this.props.setUser(res.data.user);
+             
+                navigate("/"); 
+                console.log(response.data.token);
+            }
+            )
+        } catch (error) {
+            if (error.response &&
+                error.response.status >= 400 &&
+                error.response.status <= 500) { setError(error.response.data.message) }
 
+        }
+        navigate("/");
+
+
+    }
+
+    if(loggedIn){
+        return <Link to="/" />
+    }
     return (
-      
-    
+
+
         <>
+     
             ;<section className="container">
                 <article className="half">
                     <h1>Sign In</h1>
@@ -41,7 +66,7 @@ const Login = ({ setLoginUser }) => {
                     <div className="content">
                         {console.log("User", user)}
                         <div className="signin-cont cont">
-                            <form action="#" method="post" encType="multipart/form-data">
+                            <form onSubmit={handleSubmit}  >
                                 <input
                                     type="email"
                                     name="email"
@@ -49,8 +74,8 @@ const Login = ({ setLoginUser }) => {
                                     className="inpt"
                                     required="required"
                                     placeholder="Your email"
-                                    value={user.email} 
-                                    onChange={handleChange} 
+                                    value={user.email}
+                                    onChange={handleChange}
                                 />
                                 <label htmlFor="email">Your email</label>
                                 <input
@@ -61,7 +86,7 @@ const Login = ({ setLoginUser }) => {
                                     required="required"
                                     placeholder="Your password"
                                     value={user.password}
-                                     onChange={handleChange}
+                                    onChange={handleChange}
                                 />
                                 <label htmlFor="password">Your password</label>
                                 <input
@@ -71,6 +96,7 @@ const Login = ({ setLoginUser }) => {
                                     defaultChecked
                                 />
                                 <label htmlFor="remember">Remember me</label>
+                                {error && <div className="alert alert-danger">{error}</div>}
                                 <div className="submit-wrap">
                                     <input type="submit" defaultValue="Sign in" className="submit" />
                                     <a href="/" className="more">

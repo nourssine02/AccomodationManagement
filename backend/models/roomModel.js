@@ -7,6 +7,12 @@ const roomSchema = new mongoose.Schema({
         trim: true,
         maxlength: [100, 'room name can not exced 100 characters']
     },
+    address: {
+        type: String,
+        required: [true, 'Please enter room address'],
+        trim: true,
+        maxlength: [100, 'room address can not exced 100 characters']
+    },
     price: {
         type: Number,
         required: [true, 'Please enter room price'],
@@ -25,12 +31,37 @@ const roomSchema = new mongoose.Schema({
     },
     images: [
         {
+            public_id: {
+                type: String,
+                required: true
+            },
             url: {
                 type: String,
                 required: true
             }
         }
     ],
+    wifi: {
+        type: String,
+        required: false
+    },
+    fitness_center: {
+        type: String,
+        required: false
+    },
+    parking: {
+        type: String,
+        required: false
+    },
+    swimmingPool: {
+        type: String,
+        required: false
+    },
+    contactNo:{
+        type: String,
+        required: [true, 'Please enter allocator phone number'],
+
+    },
     roomsType: {
         type: String,
         required: [true, 'Please select type of this rooms '],
@@ -43,7 +74,19 @@ const roomSchema = new mongoose.Schema({
             message: 'Please select coorect type of rooms'
         }
     },
-    capacity: {
+    status:{
+        type: String,
+        required: [true, 'Please enter the status of this room '],
+    },
+    maximumAdultsAllow: {
+        type: Number,
+        required: [true, 'Please enter the maximum adults allow']
+    },
+    maximumChildsAllow: {
+        type: Number,
+        required: [true, 'Please enter the maximum childs allow']
+    },
+    capacity:{
         type: Number,
         required: [true, 'Please enter the capacity of rooms']
     },
@@ -84,6 +127,11 @@ const roomSchema = new mongoose.Schema({
             }
         }
     ],
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        required: true
+    },
     createdAt: {
         type: Date,
         default: Date.now

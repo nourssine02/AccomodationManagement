@@ -83,7 +83,7 @@ const InfoSectionTwo = ({ heading, paragraphOne, paragraphTwo, buttonLabel, reve
                     <h1>{heading}</h1>
                     <p>{paragraphOne}</p>
                     <p>{paragraphTwo}</p>
-                    <Button to="/" primary="true" >{buttonLabel} </Button>
+                    <Button to="/rooms" primary="true" >{buttonLabel} </Button>
 
                 </ColumnRight>
 

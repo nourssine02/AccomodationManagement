@@ -1,35 +1,56 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import Cart from '../Main/Cart';
-import { CartData1, CartData2, CartData3, CartData4 } from '../../Data/CartData';
+import Loader from '../../Loader';
+
+import { useDispatch, useSelector } from 'react-redux'
+import { getRooms } from '../../Redux/Actions/roomActions'
+import { useAlert } from 'react-alert'
 
 const Container = styled.div`
     padding-bottom : 150px;
 `;
-const Property = () => {
+
+
+
+
+const Rooms = () => {
+
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const { loading, rooms, error } = useSelector(state => state.rooms)
+
+
+  useEffect(() => {
+    if (error) {
+      return alert.error(error)
+
+    }
+    dispatch(getRooms());
+
+
+  }, [dispatch, alert, error])
+
+
+
   return (
     <>
-      <Container>
 
-        <Cart {...CartData1} />
-        <Cart {...CartData2} />
-        <Cart {...CartData3} />
-        <Cart {...CartData4} />
-        <Cart {...CartData1} />
-        <Cart {...CartData2} />
-        <Cart {...CartData3} />
-        <Cart {...CartData4} />
-        <Cart {...CartData1} />
-        <Cart {...CartData2} />
-        <Cart {...CartData3} />
-        <Cart {...CartData4} /> 
+      {loading ? <Loader /> : (
 
+        <Container>
 
-      </Container>
+          {rooms && rooms.map(room => (
+            <Cart key={room._id} room={room} />
+          ))}
+
+        </Container>
+
+      )}
 
 
     </>
   )
 }
 
-export default Property
+export default Rooms

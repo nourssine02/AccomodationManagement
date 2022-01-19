@@ -1,4 +1,4 @@
-const Room = require('../models/room');
+const Room = require('../models/roomModel');
 const dotenv = require('dotenv');
 const connectDatabase = require('../config/database');
 
