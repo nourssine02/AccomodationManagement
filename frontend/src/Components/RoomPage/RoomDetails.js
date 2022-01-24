@@ -20,8 +20,11 @@ const RoomDetails = () => {
     const [numberOfAdults, setNumberOfAdults] = useState('');
     const [numberOfChilds, setNumberOfChilds] = useState('');
     const [numberOfDays, setNumberOfDays] = useState('')
-    const [comment, setComment] = useState([])
+    const [reviews, setReviews] = useState([])
 
+
+    const [rating, setRating] = useState(0);
+    const [comment, setComment] = useState([]);
 
     const { id } = useParams();
     const alert = useAlert();
@@ -37,7 +40,7 @@ const RoomDetails = () => {
 
         }
 
-    }, [dispatch, alert, error, id, comment])
+    }, [dispatch, alert, error, id])
 
 
     const handleSubmit = async (e) => {
@@ -59,22 +62,32 @@ const RoomDetails = () => {
         }
 
     }
-    // const handleComment = async (e) => {
-    //     e.preventDefault();
+    const handleComment = async (e) => {
+        e.preventDefault();
 
-    //     axios.put(`/api/v1/reviews?id=${id}`)
-    //         .then(response => {
-    //             console.log(response);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })
+        axios.put(`/api/v1/review`, {
+            rating: rating, comment: comment,
+            roomId: room._id
 
-    // }
+
+        })
+            .then(response => {
+                console.log(response);
+                alert('Comment Saved')
+
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+
+    }
+
+
     const getComment = async () => {
         const res = await axios.get(`/api/v1/reviews?id=${id}`)
-        setComment(res.data.comment)
-        console.log(res.data.comment)
+        setReviews(res.data.reviews)
+        console.log(res.data.reviews)
 
     }
 
@@ -82,6 +95,7 @@ const RoomDetails = () => {
         getComment();
 
     }, [])
+
 
     return (
         <>
@@ -302,29 +316,63 @@ const RoomDetails = () => {
                         <br></br>
                     </div>
                     <hr />
-                    <h4>Add a comment</h4>
 
-                    <div className="review">
+
+
+
+
+                    <div className="comment" style={{marginLeft: '20px'}}>
+                        <h5 className="mt-5 font-weight-bold">Reviews</h5>
                         <div className="row">
-                            <div className="col-10">
-                                <div className="comment-box ml-2">
+                            {reviews && reviews.map((rev, index) => (
+                                <div  key={index}>
+                                    <StarRatingComponent
+                                        starColor={`#fdcc0d`}
+                                        emptyStarColor={`#808080`}
+                                        name="rate"
+                                        starCount={5}
+                                        value={rev.rating}
+                                        className="col-6"
 
-                                    <div className="rating"> <input type="radio" name="rating" value="5" id="5" /><label htmlFor="5">☆</label> <input type="radio" name="rating" value="4" id="4" /><label htmlFor="4">☆</label> <input type="radio" name="rating" value="3" id="3" /><label htmlFor="3">☆</label> <input type="radio" name="rating" value="2" id="2" /><label htmlFor="2">☆</label> <input type="radio" name="rating" value="1" id="1" /><label htmlFor="1">☆</label> </div>
-                                    <div className="comment-area"> <textarea className="form-control" placeholder="what is your view?" rows="4"></textarea> </div>
-                                    <div className="comment-btns mt-2">
-                                        <div className="row">
-                                            <div className="col-6">
-                                                <div className="pull-left"> <button className="btn btn-success btn-sm">Cancel</button> </div>
-                                            </div>
-                                            <div className="col-6">
-                                                <div className="pull-right"> <button className="btn btn-success send btn-sm">Send <i className="fa fa-long-arrow-right ml-1"></i></button> </div>
+                                    />
+                                    <p className="col-2 mr-4">{rev.comment}</p>
+
+                                </div>
+
+                            ))}
+                        </div>
+
+                    </div>
+                    <form onSubmit={handleComment} style={{ marginLeft: '20px' }} >
+                        <h4>Add a comment</h4>
+
+                        <div className="content">
+                            <div className="row">
+                                <div className="col-10">
+                                    <div className="comment-box ml-2">
+
+                                        <div className="ratings" >
+                                            <input type="radio" name="rating" value="5" id="5" onChange={(e) => setRating(e.target.value)} /><label htmlFor="5">☆</label>
+                                            <input type="radio" name="rating" value="4" id="4" onChange={(e) => setRating(e.target.value)} /><label htmlFor="4">☆</label>
+                                            <input type="radio" name="rating" value="3" id="3" onChange={(e) => setRating(e.target.value)} /><label htmlFor="3">☆</label>
+                                            <input type="radio" name="rating" value="2" id="2" onChange={(e) => setRating(e.target.value)} /><label htmlFor="2">☆</label>
+                                            <input type="radio" name="rating" value="1" id="1" onChange={(e) => setRating(e.target.value)} /><label htmlFor="1">☆</label>
+                                        </div>
+                                        <div className="comment-area"> <textarea className="form-control" placeholder="what is your view?" rows="4" value={comment} onChange={(e) => setComment(e.target.value)}></textarea> </div>
+                                        <div className="comment-btns mt-2">
+                                            <div className="row">
+
+                                                <div className="col-6">
+                                                    <div className="pull-right"> <button className="btn btn-success send btn-sm">Send <i className="fa fa-long-arrow-right ml-1"></i></button> </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
+
 
                 </div>
 

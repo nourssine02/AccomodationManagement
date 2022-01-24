@@ -70,7 +70,6 @@ class App extends Component {
           <Route path="/admin/UpdateRoom/:id" element={<UpdateRoom />} />
 
 
-          {/* <Route exact path="/edit/:id" component={EditUser} />  */}
         </Routes>
 
 

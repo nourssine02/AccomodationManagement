@@ -104,9 +104,12 @@
     
 /*  rooms fitler*/
 .filter-container {
-  padding:  0rem 0rem;
+  padding: 5rem -2rem;
 }
-
+.title{
+  padding-left: 3rem;
+  padding-bottom: 2rem;
+}
 .filter-form {
   width: 60vw;
   margin: 0 auto;
@@ -128,12 +131,20 @@
   background: transparent;
   font-size: 1rem;
 }
-
-
+.size-inputs {
+  display: flex;
+}
+.size-input {
+  width: 40%;
+  padding: 0.2rem;
+  border: 1px solid var(--mainBlack);
+  border-radius: 0.3rem;
+  margin-right: 0.3rem;
+}
 .single-extra label {
   display: inline-block;
   font-size: 0.8rem;
-  margin-left: px;
+  margin-left: 0.5rem;
 }
 @media screen and (min-width: 776px) {
   .filter-form {
@@ -147,22 +158,20 @@
   }
 }
 /* end of rooms fitler*/
+
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
 
-html,
-body {
-    height: 100%
-}
 
 
 
-.review {
-    
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
     min-width: 0;
     padding: 20px;
-    width: 100%;
+    word-wrap: break-word;
     background-clip: border-box;
-     word-wrap: break-word;
     border-radius: 6px;
 }
 
@@ -177,6 +186,8 @@ body {
 
 .form-control:focus {
     color: #495057;
+    background-color: #fff;
+    border-color: #ffffff;
     outline: 0;
     box-shadow: 0 0 0 1px #9c6644 !important
 }
@@ -193,7 +204,7 @@ body {
     border-color: #9c6644
 }
 
-.rating {
+.ratings {
     display: flex;
     margin-top: -10px;
     flex-direction: row-reverse;
@@ -201,11 +212,11 @@ body {
     float: left
 }
 
-.rating>input {
+.ratings>input {
     display: none
 }
 
-.rating>label {
+.ratings>label {
     position: relative;
     width: 19px;
     font-size: 25px;
@@ -213,21 +224,21 @@ body {
     cursor: pointer
 }
 
-.rating>label::before {
+.ratings>label::before {
     content: "\2605";
     position: absolute;
     opacity: 0
 }
 
-.rating>label:hover:before,
-.rating>label:hover~label:before {
+.ratings>label:hover:before,
+.ratings>label:hover~label:before {
     opacity: 1 !important
 }
 
-.rating>input:checked~label:before {
+.ratings>input:checked~label:before {
     opacity: 1
 }
 
-.rating:hover>input:checked~label:before {
+.ratings:hover>input:checked~label:before {
     opacity: 0.4
 }

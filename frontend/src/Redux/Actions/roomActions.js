@@ -9,6 +9,7 @@ import {
     CLEAR_ERRORS
 
 } from '../Constants/roomConstants'
+export const ADD_COMMENT = "ADD_COMMENT";
 
 // get all rooms 
 export const getRooms = (keyword = '', price, roomsType, capacity = 1, ratings = 0) => async (dispatch) => {
@@ -58,6 +59,34 @@ export const getRoomDetails = (id) => async (dispatch) => {
         })
     }
 }
+
+// export const addComment = (roomId, commenterId, text, commenterPseudo) => {
+//     return (dispatch) => {
+//         return axios({
+//             method: "put",
+//             url: `/api/v1/review`,
+//             data: { commenterId, text, commenterPseudo },
+//         })
+//             .then((res) => {
+//                 dispatch({ type: ADD_COMMENT, payload: { roomId } });
+//             })
+//             .catch((err) => console.log(err));
+//     };
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //clear errors
