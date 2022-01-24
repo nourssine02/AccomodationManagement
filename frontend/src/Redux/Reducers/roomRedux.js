@@ -7,7 +7,7 @@ import {
     ROOM_DETAILS_SUCCESS,
     ROOM_DETAILS_FAIL
 
-} from '../../Constants/roomConstants'
+} from '../Constants/roomConstants'
 
 export const roomRedux = (state = { room: [] }, action) => {
     switch (action.type) {

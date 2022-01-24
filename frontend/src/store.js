@@ -5,10 +5,14 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 
 
 import { roomRedux, roomDetailsRedux } from './Redux/Reducers/roomRedux'
+import { authReducer } from './Redux/Reducers/userRedux';
+
+
 const reducer = combineReducers({
     rooms: roomRedux,
-    roomDetails: roomDetailsRedux
-})
+    roomDetails: roomDetailsRedux,
+    auth: authReducer
+}) 
 
 let initialState = {}
 

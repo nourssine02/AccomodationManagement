@@ -1,30 +1,40 @@
 const Room = require('../models/roomModel')
-
-
 const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors')
+const APIFeatures = require('../utils/apiFeatures');
+const ObjectId = require('mongodb').ObjectId;
 
-//create new rRooms => /api/v1/admin/room/new
+
+//create new Rooms => /api/v1/admin/room/new
 exports.newRoom = catchAsyncErrors(async (req, res, next) => {
 
-    //req.body.user = req.user.id; => for defined user
-    const room = Room.create(req.body);
+
+    req.body.user = req.user.id;
+
+    const room = await Room.create(req.body);
 
     res.status(201).json({
         success: true,
-        room
+        room,
+
     })
 })
-
 
 
 
 //Get all Rooms =>  /api/v1/rooms
 exports.getRooms = catchAsyncErrors(async (req, res, next) => {
 
-    const rooms = await Room.find();
+    const resPage = 9;
+    const RoomCount = await Room.countDocuments()
+    const apiFeatures = new APIFeatures(Room.find(), req.query)
+        .search()
+        .filter()
+        .pagination(resPage)
+    const rooms = await apiFeatures.query;
     res.status(200).json({
         success: true,
+        RoomCount,
         count: rooms.length,
         rooms
     })
@@ -100,4 +110,88 @@ exports.deleteRoom = catchAsyncErrors(async (req, res, next) => {
 
     })
 
+})
+
+
+// create new review  => /api/v1/review
+
+exports.createRoomReview = catchAsyncErrors(async (req, res, next) => {
+
+
+
+   
+    const { rating, comment, user, name , roomId } = req.body;
+
+    const review = {
+        user: user,
+        name: name,
+        rating: Number(rating),
+        comment,
+
+    }
+    const room = await Room.findById(roomId);
+    const isReviewd = room.reviews.find(
+        r => r.user.toString() === req.user.id.toString()
+    )
+    if (isReviewd) {
+        room.reviews.forEach(review => {
+            if (review.user.toString() === req.user.id.toString()) {
+                review.comment = comment;
+                review.rating = rating
+            }
+        })
+
+    } else {
+        room.reviews.push(review);
+        room.numOfReviews = room.reviews.length
+    }
+    room.ratings = room.reviews.reduce((acc, item) => item.rating + acc, 0) / room.reviews.length
+    await room.save({ validateBeforeSave: false });
+
+    res.status(200).json({
+        success: true
+    })
+})
+
+// Get Room Reviews =>  /api/v1/reviews
+exports.getRoomReviews = catchAsyncErrors(async (req, res, next) => {
+
+
+    const room = await Room.findById(req.query.id);
+
+    res.status(200).json({
+        success: true,
+        reviews: room.reviews
+
+    })
+})
+
+
+// Delete Room Reviews =>  /api/v1/reviews
+exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
+
+
+    const room = await Room.findById(req.query.roomId);
+
+    const reviews = room.reviews.filter(review => review._id.toString() !== req.query.id.toString());
+
+    const numOfReviews = reviews.length;
+
+    const ratings = room.reviews.reduce((acc, item) => item.rating + acc, 0) / reviews.length
+
+    await Room.findByIdAndUpdate(req.query.roomId, {
+        reviews,
+        ratings,
+        numOfReviews
+    }, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false
+    })
+
+    res.status(200).json({
+        success: true,
+        reviews: room.reviews
+
+    })
 })

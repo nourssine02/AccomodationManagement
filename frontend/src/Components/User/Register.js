@@ -27,22 +27,19 @@ const Register = () => {
         e.preventDefault();
         try {
             const url = "http://localhost:4000/api/v1/register";
-            const {user:res} = await axios.post(url, user);
+            const { user: res } = await axios.post(url, user);
             navigate("/Login");
             alert(res.data.message);
 
 
         } catch (error) {
-            if (error.response && 
+            if (error.response &&
                 error.response.status >= 400 &&
-                error.response.status <= 500 )
-            { setError(error.response.data.message)}
-           
+                error.response.status <= 500) { setError(error.response.data.message) }
+
         }
 
- 
     }
-
     return (
         <>
             ;<section className="container">
@@ -53,7 +50,7 @@ const Register = () => {
                     <div className="content">
                         {console.log("User", user)}
                         <div className="signup-cont cont">
-                            <form   onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit}>
                                 <input
                                     type="name"
                                     name="name"

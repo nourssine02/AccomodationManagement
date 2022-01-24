@@ -5,7 +5,7 @@
 
 #no_of_reviews {
   font-size: 0.85rem;
-  color: grey;
+  color: #808080;
   margin-left: 0.5rem;
 }
 /* Ratings */
@@ -102,5 +102,132 @@
   
 }
     
+/*  rooms fitler*/
+.filter-container {
+  padding:  0rem 0rem;
+}
+
+.filter-form {
+  width: 60vw;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(202px, 1fr));
+  grid-row-gap: 2rem;
+  grid-column-gap: 40px;
+}
+.form-group {
+  text-transform: capitalize;
+}
+.form-group label {
+  display: block;
+  letter-spacing: var(--mainSpacing);
+  margin-bottom: 0.5rem;
+}
+.form-control {
+  width: 100%;
+  background: transparent;
+  font-size: 1rem;
+}
 
 
+.single-extra label {
+  display: inline-block;
+  font-size: 0.8rem;
+  margin-left: px;
+}
+@media screen and (min-width: 776px) {
+  .filter-form {
+    width: 70vw;
+  }
+}
+@media screen and (min-width: 992px) {
+  .filter-form {
+    width: 95vw;
+    max-width: 1170px;
+  }
+}
+/* end of rooms fitler*/
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+html,
+body {
+    height: 100%
+}
+
+
+
+.review {
+    
+    min-width: 0;
+    padding: 20px;
+    width: 100%;
+    background-clip: border-box;
+     word-wrap: break-word;
+    border-radius: 6px;
+}
+
+.comment-box {
+    padding: 5px
+}
+
+.comment-area textarea {
+    resize: none;
+    border: 1px solid #ad9f9f
+}
+
+.form-control:focus {
+    color: #495057;
+    outline: 0;
+    box-shadow: 0 0 0 1px #9c6644 !important
+}
+
+.send {
+    color: #fff;
+    background-color: #9c6644;
+    border-color: #9c6644
+}
+
+.send:hover {
+    color: #fff;
+    background-color: #9c6644;
+    border-color: #9c6644
+}
+
+.rating {
+    display: flex;
+    margin-top: -10px;
+    flex-direction: row-reverse;
+    margin-left: -4px;
+    float: left
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 19px;
+    font-size: 25px;
+    color: #9c6644;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}

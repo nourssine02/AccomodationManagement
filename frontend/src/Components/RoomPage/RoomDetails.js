@@ -5,14 +5,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getRoomDetails, clearErrors } from '../../Redux/Actions/roomActions'
 import { useAlert } from 'react-alert'
 import { useParams } from "react-router-dom";
-import Rating from 'react-rating'
+
+import StarRatingComponent from 'react-star-rating-component';
+import axios from 'axios'
 
 
 
 
+const RoomDetails = () => {
 
-const RoomDetails = ({ match }) => {
 
+    const [checkIn, setCheckIn] = useState('');
+    const [checkOut, setCheckOut] = useState('');
+    const [numberOfAdults, setNumberOfAdults] = useState('');
+    const [numberOfChilds, setNumberOfChilds] = useState('');
+    const [numberOfDays, setNumberOfDays] = useState('')
+    const [comment, setComment] = useState([])
 
 
     const { id } = useParams();
@@ -21,33 +29,59 @@ const RoomDetails = ({ match }) => {
     const { loading, error, room } = useSelector(state => state.roomDetails)
 
 
-
     useEffect(() => {
         dispatch(getRoomDetails(id))
-
         if (error) {
             alert.error(error);
             dispatch(clearErrors())
+
         }
-    }, [dispatch, alert, error, id])
+
+    }, [dispatch, alert, error, id, comment])
 
 
-    const [bookingDetails, udpateDetails] = useState({
-        checkIn: "",
-        checkOut: "",
-        adults: 0,
-        childs: 0,
-        totalDays: 0,
-        totalprice: 0,
-        showBooking: true,
-        dbooking: false,
-        showPayment: false,
-        bookingMsg: false
-    })
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        console.log(checkIn + checkOut + numberOfAdults + numberOfChilds);
 
-    const [state, setstate] = useState({ hotel: [] })
+        try {
+            const url = "/api/v1/booking/new";
+            await axios.post(url, {
+                checkIn: checkIn, checkOut: checkOut, numberOfAdults: numberOfAdults,
+                numberOfChilds: numberOfChilds, numberOfDays: numberOfDays
 
-    console.log("Hotel =>>>", state.hotel)
+            });
+            console.log(checkIn + checkOut + numberOfAdults + numberOfChilds + numberOfDays);
+            alert.success(' Management will contact you to confirm the reservation');
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
+    // const handleComment = async (e) => {
+    //     e.preventDefault();
+
+    //     axios.put(`/api/v1/reviews?id=${id}`)
+    //         .then(response => {
+    //             console.log(response);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })
+
+    // }
+    const getComment = async () => {
+        const res = await axios.get(`/api/v1/reviews?id=${id}`)
+        setComment(res.data.comment)
+        console.log(res.data.comment)
+
+    }
+
+    useEffect(() => {
+        getComment();
+
+    }, [])
 
     return (
         <>
@@ -63,66 +97,75 @@ const RoomDetails = ({ match }) => {
                                 <h2>{room.name}</h2>
 
 
-                                <div className="ratings mt-auto">
-                                    <Rating
-                                        emptySymbol="fa fa-star-o fa-1x"
-                                        fullSymbol="fa fa-star fa-1x"
+                                <div className="rating">
+                                    <StarRatingComponent
+                                        starColor={`#fdcc0d`}
+                                        emptyStarColor={`#808080`}
+                                        name="rate"
+                                        starCount={5}
+                                        value={room.ratings}
                                     />
                                     <span id="no_of_reviews">({room.numOfReviews} Reviews)</span>
-
-
                                 </div>
+
                             </div>
                             <div className="d-flex roomview-wrapper">
                                 <div className="carousel-box">
                                     <div interval="1500">
-                                        {room.images && room.images.map((image) => (
 
-                                            <div className="box" key={image.public_id}>
-                                                <img
-                                                    className="carousel-img"
-                                                    src={image.url}
-                                                    alt='roomDetailsImage'
 
-                                                />
+                                        <div className="box">
+                                            <img
+                                                className="carousel-img"
+                                                src={room.images}
+                                                alt='roomDetailsImage'
 
-                                            </div>
-                                        ))}
+                                            />
+
+                                        </div>
+
                                     </div>
                                 </div>
 
-                                <div className="bg-light book-hotel text-white mb-5">
+                                <div className="bg-light book-hotel text-white" style={{ marginTop: '-50px' }}>
                                     <div>
-                                        <section className={bookingDetails.showBooking ? "d-block" : "d-none"}>
-                                            <form >
+                                        <section className="d-block">
+                                            <form onSubmit={handleSubmit} >
                                                 <div>
                                                     <div className="input-group input-group-lg mt-5">
                                                         <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="inputGroup-sizing-lg">Check In</span>
+                                                            <span className="input-group-text" >Check In</span>
                                                         </div>
-                                                        <input type="date" min='0' name="checkIn" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required />
+                                                        <input type="date" min='2022-01-25' name="checkIn" className="form-control" value={checkIn} onChange={e => setCheckIn(e.target.value)} />
                                                     </div>
                                                     <div className="input-group input-group-lg mt-3">
                                                         <div className="input-group-prepend">
-                                                            <span className="input-group-text" id="inputGroup-sizing-lg">Check Out</span>
+                                                            <span className="input-group-text" >Check Out</span>
                                                         </div>
-                                                        <input type="date" min='0' name="checkOut" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required />
+                                                        <input type="date" min='2022-01-25' name="checkOut" className="form-control" value={checkOut} onChange={e => setCheckOut(e.target.value)} />
                                                     </div>
                                                     <div className="d-flex">
                                                         <div className="input-group input-group-lg mt-3 m-1">
                                                             <div className="input-group-prepend">
-                                                                <span className="input-group-text" id="inputGroup-sizing-lg">Persons</span>
+                                                                <span className="input-group-text" >Persons</span>
                                                             </div>
-                                                            <input type="number" min="1" max='' name="adults" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required />
+                                                            <input type="number" name="adults" className="form-control" value={numberOfAdults} onChange={e => setNumberOfAdults(e.target.value)} />
                                                         </div>
                                                         <div className="input-group input-group-lg mt-3 m-1">
                                                             <div className="input-group-prepend">
-                                                                <span className="input-group-text" id="inputGroup-sizing-lg">Childs</span>
+                                                                <span className="input-group-text" >Childs</span>
                                                             </div>
-                                                            <input type="number" min="0" max='' name="childs" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" required />
+                                                            <input type="number" name="childs" className="form-control" value={numberOfChilds} onChange={e => setNumberOfChilds(e.target.value)} />
                                                         </div>
 
                                                     </div>
+                                                    <div className="input-group input-group-lg mt-3 m-1">
+                                                        <div className="input-group-prepend">
+                                                            <span className="input-group-text" >Number Of Days</span>
+                                                        </div>
+                                                        <input type="number" name="numberOfDays" className="form-control" value={numberOfDays} onChange={e => setNumberOfDays(e.target.value)} />
+                                                    </div>
+
                                                     <div className='text-center mt-3 text-dark'>
                                                         <h2>Price :
                                                             <span className="font-weight-bold">{room.price} $</span>
@@ -134,7 +177,7 @@ const RoomDetails = ({ match }) => {
                                                             <span className="badge badge-primary badge-pill" id={room.status === "Available" ? 'greenColor' : 'redColor'} >{room.status === "Available" ? <>&#10004;</> : <>&#10006;</>}</span>
                                                         </h5>
                                                     </div>
-                                                    <button type="submit" className="btn btn-lg btn-block btn-success mt-4">Book Now</button>
+                                                    <button type="submit" className="btn btn-lg btn-block btn-success mt-4" style={{ marginLeft: '130px' }} >Book Now</button>
 
                                                 </div>
 
@@ -157,7 +200,7 @@ const RoomDetails = ({ match }) => {
                         </div>
                         <hr />
                         <div className="room-serivces">
-                            <h5 className="mt-5 font-weight-bold">Room Service</h5>
+                            <h5 className="mt-5 font-weight-bold">House Service</h5>
                             <div className="col-sm-4">
                                 <ul className="list-group" >
                                     <li className="list-group-item d-flex justify-content-between align-items-center">
@@ -181,7 +224,7 @@ const RoomDetails = ({ match }) => {
                         </div>
                         <hr />
                         <div className="pritn">
-                            <h5 className="mt-5 font-weight-bold">Hotel Info</h5>
+                            <h5 className="mt-5 font-weight-bold">House Info</h5>
                             <div className="row">
 
                                 <ul className="list-group-flush col-6">
@@ -216,7 +259,7 @@ const RoomDetails = ({ match }) => {
                         <hr />
 
                         <div className="rules">
-                            <h5 className="mt-5 font-weight-bold">Hotel Rules</h5>
+                            <h5 className="mt-5 font-weight-bold">House Rules</h5>
                             <div className="row">
                                 <div className="col-2 mr-4">
                                     <p>Check-in</p>
@@ -258,7 +301,33 @@ const RoomDetails = ({ match }) => {
                         <br></br>
                         <br></br>
                     </div>
+                    <hr />
+                    <h4>Add a comment</h4>
+
+                    <div className="review">
+                        <div className="row">
+                            <div className="col-10">
+                                <div className="comment-box ml-2">
+
+                                    <div className="rating"> <input type="radio" name="rating" value="5" id="5" /><label htmlFor="5">☆</label> <input type="radio" name="rating" value="4" id="4" /><label htmlFor="4">☆</label> <input type="radio" name="rating" value="3" id="3" /><label htmlFor="3">☆</label> <input type="radio" name="rating" value="2" id="2" /><label htmlFor="2">☆</label> <input type="radio" name="rating" value="1" id="1" /><label htmlFor="1">☆</label> </div>
+                                    <div className="comment-area"> <textarea className="form-control" placeholder="what is your view?" rows="4"></textarea> </div>
+                                    <div className="comment-btns mt-2">
+                                        <div className="row">
+                                            <div className="col-6">
+                                                <div className="pull-left"> <button className="btn btn-success btn-sm">Cancel</button> </div>
+                                            </div>
+                                            <div className="col-6">
+                                                <div className="pull-right"> <button className="btn btn-success send btn-sm">Send <i className="fa fa-long-arrow-right ml-1"></i></button> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
 
             )}
         </>

@@ -1,0 +1,25 @@
+[
+    {
+        "bookingInfo": {
+            "checkIn": {
+                "date": "2022-03-15"
+            },
+            "checkOut": {
+                "date": "2022-03-17"
+            },
+            "numberOfAdults": 2,
+            "numberOfChilds": 1,
+            "numberOfDays": 4
+        },
+        "user":"61e1d45d1fcd6968eddbc2cb",
+        "totalPrice": 460,
+        "bookingItems": [
+            {
+                "room": "61eb3bc2c25f6c8c37103d53"
+
+            }
+            
+           
+        ]
+    }
+]

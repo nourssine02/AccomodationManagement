@@ -1,13 +1,14 @@
 const router = require('express').Router();
 const { isAuthenticatedUser, authorizeRoles } = require('../middleware/auth')
 
-const { logoutUser, registerUser, loginUser, allUsers, getuserDetails, updateUser, deleteUser } = require('../controllers/userController');
+const { logoutUser, registerUser, loginUser, allUsers, getuserDetails, updateUser, deleteUser, getUserProfile } = require('../controllers/userController');
 
 
 
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 router.route("/logout").get(logoutUser);
+router.route('/me').get(isAuthenticatedUser, getUserProfile)
 
 
 router.route("/admin/users").get(allUsers);

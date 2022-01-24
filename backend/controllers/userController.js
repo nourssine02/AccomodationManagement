@@ -2,7 +2,7 @@ const UserModel = require('../models/userModel');
 const catchAsyncErrors = require('../middleware/catchAsyncErrors');
 const sendToken = require('../utils/jwtToken');
 const ErrorHandler = require('../utils/errorHandler');
-const { createToken, validateToken } = require('../utils/jwtToken');
+//const { createToken, validateToken } = require('../utils/jwtToken');
 const JWT = require("jsonwebtoken");
 
 
@@ -15,13 +15,23 @@ module.exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 
     const user = await UserModel.create({ name, email, password })
 
+    //create jwt token
+    const token = user.getJwtToken();
 
-    // sendToken(user, 200, res);
-    const token = await JWT.sign({ email: user.email, id: user.id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_TIME });
-    res.json({
-        user,
-        token
-    });
+
+    //options for  cookie
+    const options = {
+        expires: new Date(Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
+        ),
+        httpOnly: true
+
+    }
+    res.status(200).cookie('token', token, options).json({
+        success: true,
+        token,
+        user
+    })
+ 
 
 })
 
@@ -49,13 +59,24 @@ module.exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     if (!isPasswordMatched) {
         return next(new ErrorHandler('Invalid email or password', 401));
     }
-    //sendToken(user, 200, res)
-    const token = await JWT.sign({ email: user.email, id: user.id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_TIME });
-    res.json({
-        user,
-        token
-    });
 
+    //create jwt token
+    const token = user.getJwtToken();
+
+
+    //options for  cookie
+    const options = {
+        expires: new Date(Date.now() + process.env.COOKIE_EXPIRES_TIME * 24 * 60 * 60 * 1000
+        ),
+        httpOnly: true
+
+    }
+    res.status(200).cookie('token', token, options).json({
+        success: true,
+        token,
+        user
+    })
+ 
 
 
 });
@@ -77,6 +98,21 @@ exports.logoutUser = catchAsyncErrors(async (req, res, next) => {
     });
 
 });
+
+
+//set currently logged in user details => /api/v1/me
+
+exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
+    const user = await UserModel.findById(req.user.id)
+
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
+
+
+
 
 //Get all Users =>  /api/v1/admin/users
 exports.allUsers = catchAsyncErrors(async (req, res, next) => {

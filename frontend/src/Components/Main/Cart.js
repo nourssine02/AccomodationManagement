@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { AiFillStar } from 'react-icons/ai'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import StarRatingComponent from 'react-star-rating-component';
+import '../RoomPage/roomView.css'
 
 
 
@@ -55,7 +56,6 @@ const CartContent = styled.div`
       }
 `;
 const Reviews = styled.div`
-  color : yellow; 
 `;
 
 
@@ -63,34 +63,36 @@ const Reviews = styled.div`
 const Cart = ({ room }) => {
     return (
         <CartSection>
-            
-                <CartWrapper >
 
-                 
-                    <Link to={`/roomDetails/${room._id}`}>
-                           <CartImage src={room.images[0].url} alt='roomImage'/>
-                    </Link>
-                   
+            <CartWrapper >
 
 
-                    <CartContent>
-                        <h2>{room.name}</h2>
-                        <Reviews >
-                            <AiFillStar />
-                            <AiFillStar />
-                            <AiFillStar />
-                            <AiFillStar />
-                            <span style={{ 'color': 'black', 'fontSize': '13px' }}> ({room.numOfReviews} Reviews)</span>
+                <Link to={`/roomDetails/${room._id}`}>
+                    <CartImage src={room.images} alt='roomImage' />
+                </Link>
+
+                <CartContent>
+                    <h2>{room.name}</h2>
+                    <Reviews>
+                        <div className="rating">
+                            <StarRatingComponent
+                                starColor={`#fdcc0d`}
+                                emptyStarColor={`#808080`}
+                                name="rate"
+                                starCount={5}
+                                value={room.ratings}
+                            />
+                            <span id="no_of_reviews">({room.numOfReviews} Reviews)</span>
+                        </div>
+
+                    </Reviews>
+
+                    <p>{room.price}$</p>
+                </CartContent>
 
 
-                        </Reviews>
+            </CartWrapper>
 
-                        <p>{room.price}$</p>
-                    </CartContent>
-
-
-                </CartWrapper>
-         
         </CartSection>
 
     )

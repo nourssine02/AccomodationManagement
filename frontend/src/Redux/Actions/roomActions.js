@@ -8,13 +8,22 @@ import {
     ROOM_DETAILS_FAIL,
     CLEAR_ERRORS
 
-} from '../../Constants/roomConstants'
+} from '../Constants/roomConstants'
 
 // get all rooms 
-export const getRooms = () => async (dispatch) => {
+export const getRooms = (keyword = '', price, roomsType, capacity = 1, ratings = 0) => async (dispatch) => {
     try {
         dispatch({ type: ALL_ROOMS_REQUEST })
-        const { data } = await axios.get('/api/v1/rooms')
+
+        let link = `/api/v1/rooms?keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}&capacity[gte]=${capacity}&ratings[gte]=${ratings}`
+
+        if (roomsType) {
+            link = `/api/v1/rooms?keyword=${keyword}&price[lte]=${price[1]}&price[gte]=${price[0]}&roomsType=${roomsType}&capacity[gte]=${capacity}&ratings[gte]=${ratings}`
+
+
+        }
+
+        const { data } = await axios.get(link)
         dispatch({
             type: ALL_ROOMS_SUCCESS,
             payload: data

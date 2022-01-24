@@ -23,6 +23,7 @@ export const Button = styled(Link)`
 
     &:hover{
         transform: translate(-2px);
+        color: black;
     }
 
 `;

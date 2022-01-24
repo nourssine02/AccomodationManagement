@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 import { Button } from '../Button';
 import { FaBars } from 'react-icons/fa';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../Redux/Actions/userActions'
 
 
 
@@ -18,6 +19,7 @@ const NavLink = css`
 
     &:hover{
         color: black;
+        
     }
 
 `;
@@ -81,78 +83,100 @@ const AdminBtn = styled.div`
     align-items: center;
     padding-right: 100px;
 `;
-class Navbar extends Component {
+
+const Navbar = () => {
 
 
-    handleLogout = () => {
-        localStorage.clear();
+    const dispatch = useDispatch();
+    const { user, loading } = useSelector(state => state.auth)
 
-        this.props.setUser(null);
 
+    const handleLogout = () => {
+        dispatch(logout())
     }
 
+    return (
+        <>
 
-    render() {
-        let buttons;
-        if (this.props.user) {
+            <Nav>
+                <Logo to="/" >Dream Home</Logo>
+                <MenuBars />
 
-            buttons = (
+                <NavMenu>
+                    <NavMenuLinks to="/"> Home</NavMenuLinks>
+                    <NavMenuLinks to="/Rooms"> Rooms</NavMenuLinks>
 
-                <>
-                    <AdminBtn>
-                        <NavMenuLinks to="/admin/users"> Add Users</NavMenuLinks>
-                        <NavMenuLinks to="/admin/users"> Add Rooms</NavMenuLinks>
-                    </AdminBtn>
+                </NavMenu>
 
-                    <Button to="/" onClick={this.handleLogout} primary="true" >
-                        Logout
-                    </Button>
+                <NavBtn>
+                    {
+                        user ? (
+                            <>
 
+                                { user && user.role === 'admin' ? (
+                                    <>
 
-                </>
-            )
-        } else {
-            buttons = (
-
-                <>
-                    <Button to="/Login" primary="true" >
-                        Login
-                    </Button>
-                    &nbsp;
-                    &nbsp;
-                    <Button to="/Register" primary="true">
-                        Register
-                    </Button>
-
-                </>
-
-            )
-
-        }
-        return (
-            <>
+                                        <AdminBtn>
 
 
-                <Nav>
-                    <Logo to="/" >Dream Home</Logo>
-                    <MenuBars />
-
-                    <NavMenu>
-                        <NavMenuLinks to="/"> Home</NavMenuLinks>
-                        <NavMenuLinks to="/Rooms"> Rooms</NavMenuLinks>
-
-                    </NavMenu>
-
-                    <NavBtn>
-
-                        {buttons}
-                    </NavBtn>
+                                            <NavMenuLinks to="/admin/users"> Add Users</NavMenuLinks>
+                                            <NavMenuLinks to="/admin/rooms"> Add Rooms</NavMenuLinks>
+                                            <NavMenuLinks to="/admin/bookings"> All Bookings</NavMenuLinks>
+                                        </AdminBtn>
 
 
-                </Nav>
-            </>
+                                        <Button to="/" primary="true" onClick={handleLogout}>
+                                            Logout
+                                        </Button>
+                                    </>
 
-        )
-    }
+                                ) : user &&  (
+                                    <>
+                                            <AdminBtn>
+                                            <NavMenuLinks to="/bookings/me"> Bookings</NavMenuLinks>
+
+                                            </AdminBtn>
+
+                                        <Button to="/" primary="true" onClick={handleLogout}>
+                                            Logout
+                                        </Button>
+
+                                    </>
+
+                                )}
+
+
+
+
+                            </>
+
+
+                        ) : !loading && (
+                            <>
+
+                                <Button to="/Login" primary="true" >
+                                    Login
+                                </Button>
+                                &nbsp;
+                                &nbsp;
+                                <Button to="/Register" primary="true">
+                                    Register
+                                </Button>
+
+                            </>
+                        )
+
+
+                    }
+                </NavBtn>
+
+
+            </Nav>
+        </>
+
+
+
+    )
 }
+
 export default Navbar

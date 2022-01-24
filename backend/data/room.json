@@ -5,12 +5,7 @@
         "price": "100",
         "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
         "ratings": 3,
-        "images": [
-            {
-                "public_id": "rooms/pexels-curtis-adams-3773577",
-                "url": "https://images.pexels.com/photos/3773577/pexels-photo-3773577.png?cs=srgb&dl=pexels-curtis-adams-3773577.jpg&fm=jpg"
-            }
-        ],
+        "images": "https://images.pexels.com/photos/3773577/pexels-photo-3773577.png?cs=srgb&dl=pexels-curtis-adams-3773577.jpg&fm=jpg",
         "wifi": "Yes",
         "fitness_center": "No",
         "parking": "Yes",
@@ -22,16 +17,6 @@
         "maximumChildsAllow": 0,
         "capacity": 1,
         "allocator": "Michel",
-        "reservations": [
-            {
-                "checkIn": {
-                    "$date": "2022-03-15"
-                },
-                "checkOut": {
-                    "$date": "2022-04-01"
-                }
-            }
-        ],
         "numOfReviews": 32,
         "reviews": [],
         "user": "61e1d45d1fcd6968eddbc2cb"
@@ -42,12 +27,7 @@
         "price": "150",
         "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
         "ratings": 2.5,
-        "images": [
-            {
-                "public_id": "rooms/pexels-vecislavas-popa-1571450",
-                "url": "https://images.pexels.com/photos/1571450/pexels-photo-1571450.jpeg?cs=srgb&dl=pexels-vecislavas-popa-1571450.jpg&fm=jpg"
-            }
-        ],
+        "images": "https://images.pexels.com/photos/1571450/pexels-photo-1571450.jpeg?cs=srgb&dl=pexels-vecislavas-popa-1571450.jpg&fm=jpg",
         "wifi": "Yes",
         "fitness_center": "No",
         "parking": "NO",
@@ -59,16 +39,6 @@
         "maximumChildsAllow": 1,
         "capacity": 1,
         "allocator": "Joliette",
-        "reservations": [
-            {
-                "checkIn": {
-                    "$date": "2022-02-06"
-                },
-                "checkOut": {
-                    "$date": "2022-02-16"
-                }
-            }
-        ],
         "numOfReviews": 50,
         "reviews": [],
         "user": "61e1d45d1fcd6968eddbc2cb"
@@ -79,12 +49,7 @@
         "price": "250",
         "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
         "ratings": 4.2,
-        "images": [
-            {
-                "public_id": "rooms/pexels-pixabay-210604",
-                "url": "https://images.pexels.com/photos/210604/pexels-photo-210604.jpeg?cs=srgb&dl=pexels-pixabay-210604.jpg&fm=jpg"
-            }
-        ],
+        "images": "https://images.pexels.com/photos/210604/pexels-photo-210604.jpeg?cs=srgb&dl=pexels-pixabay-210604.jpg&fm=jpg",
         "wifi": "Yes",
         "fitness_center": "No",
         "parking": "Yes",
@@ -96,16 +61,6 @@
         "maximumChildsAllow": 1,
         "capacity": 2,
         "allocator": "Nour",
-        "reservations": [
-            {
-                "checkIn": {
-                    "$date": "2022-06-15"
-                },
-                "checkOut": {
-                    "$date": "2022-07-15"
-                }
-            }
-        ],
         "numOfReviews": 24,
         "reviews": [],
         "user": "61e1d45d1fcd6968eddbc2cb"
@@ -116,12 +71,7 @@
         "price": "230",
         "description": "Street art edison bulb gluten-free, tofu try-hard lumbersexual brooklyn tattooed pickled chambray. Actually humblebrag next level, deep v art party wolf tofu direct trade readymade sustainable hell of banjo. Organic authentic subway tile cliche palo santo, street art XOXO dreamcatcher retro sriracha portland air plant kitsch stumptown. Austin small batch squid gastropub. Pabst pug tumblr gochujang offal retro cloud bread bushwick semiotics before they sold out sartorial literally mlkshk. Vaporware hashtag vice, sartorial before they sold out pok pok health goth trust fund cray.",
         "ratings": 3,
-        "images": [
-            {
-                "public_id": "rooms/pexels-curtis-adams-3773575",
-                "url": "https://images.pexels.com/photos/3773575/pexels-photo-3773575.png?cs=srgb&dl=pexels-curtis-adams-3773575.jpg&fm=jpg"
-            }
-        ],
+        "images": "https://images.pexels.com/photos/3773575/pexels-photo-3773575.png?cs=srgb&dl=pexels-curtis-adams-3773575.jpg&fm=jpg",
         "wifi": "Yes",
         "fitness_center": "No",
         "parking": "Yes",
@@ -133,16 +83,6 @@
         "maximumChildsAllow": 0,
         "capacity": 2,
         "allocator": "Alex",
-        "reservations": [
-            {
-                "checkIn": {
-                    "$date": "2022-08-16"
-                },
-                "checkOut": {
-                    "$date": "2022-10-08"
-                }
-            }
-        ],
         "numOfReviews": 62,
         "reviews": [],
         "user": "61e1d45d1fcd6968eddbc2cb"

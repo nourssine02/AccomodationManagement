@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 
 const roomSchema = new mongoose.Schema({
+
+
     name: {
         type: String,
         required: [true, 'Please enter room name'],
@@ -29,18 +31,12 @@ const roomSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    images: [
-        {
-            public_id: {
-                type: String,
-                required: true
-            },
-            url: {
-                type: String,
-                required: true
-            }
-        }
-    ],
+    images:
+    {
+        type: String,
+        required: true
+    }
+    ,
     wifi: {
         type: String,
         required: false
@@ -57,7 +53,7 @@ const roomSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    contactNo:{
+    contactNo: {
         type: String,
         required: [true, 'Please enter allocator phone number'],
 
@@ -74,7 +70,7 @@ const roomSchema = new mongoose.Schema({
             message: 'Please select coorect type of rooms'
         }
     },
-    status:{
+    status: {
         type: String,
         required: [true, 'Please enter the status of this room '],
     },
@@ -86,7 +82,7 @@ const roomSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'Please enter the maximum childs allow']
     },
-    capacity:{
+    capacity: {
         type: Number,
         required: [true, 'Please enter the capacity of rooms']
     },
@@ -94,25 +90,18 @@ const roomSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter room allocator']
     },
-    reservations: [
-        {
-            checkIn: {
-                type: Object,
-                required: [true, 'Please enter your Check in date of this room']
-
-            },
-            checkOut: {
-                type: Object,
-                required: [true, 'Please enter  your Check out date free of this room']
-            }
-        }
-    ],
     numOfReviews: {
         type: Number,
         default: 0
     },
     reviews: [
         {
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+
+            },
             name: {
                 type: String,
                 required: true
@@ -125,12 +114,14 @@ const roomSchema = new mongoose.Schema({
                 type: String,
                 required: true
             }
+
         }
     ],
     user: {
-        type: mongoose.Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
+
     },
     createdAt: {
         type: Date,
