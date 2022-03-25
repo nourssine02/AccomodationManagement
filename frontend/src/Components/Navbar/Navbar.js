@@ -113,7 +113,19 @@ const Navbar = () => {
                         user ? (
                             <>
 
-                                { user && user.role === 'admin' ? (
+                                {user && user.role !== 'admin' ? (
+                                    <>
+
+
+                                        <AdminBtn>
+                                            <NavMenuLinks to="/bookings/me"> Bookings</NavMenuLinks>
+
+                                        </AdminBtn>
+
+
+                                    </>
+
+                                ) : user.role === 'admin' && (
                                     <>
 
                                         <AdminBtn>
@@ -124,26 +136,14 @@ const Navbar = () => {
                                             <NavMenuLinks to="/admin/bookings"> All Bookings</NavMenuLinks>
                                         </AdminBtn>
 
-
-                                        <Button to="/" primary="true" onClick={handleLogout}>
-                                            Logout
-                                        </Button>
-                                    </>
-
-                                ) : user &&  (
-                                    <>
-                                            <AdminBtn>
-                                            <NavMenuLinks to="/bookings/me"> Bookings</NavMenuLinks>
-
-                                            </AdminBtn>
-
-                                        <Button to="/" primary="true" onClick={handleLogout}>
-                                            Logout
-                                        </Button>
-
                                     </>
 
                                 )}
+                                <span>You are logged as {user && user.name}</span>&nbsp;
+
+                                <Button to="/" primary="true" onClick={handleLogout}>
+                                    Logout
+                                </Button>
 
 
 

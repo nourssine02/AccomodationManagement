@@ -73,6 +73,7 @@ const Cart = ({ room }) => {
 
                 <CartContent>
                     <h2>{room.name}</h2>
+                    <h2>{room.address}</h2>
                     <Reviews>
                         <div className="rating">
                             <StarRatingComponent

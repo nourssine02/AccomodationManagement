@@ -261,7 +261,7 @@ const RoomDetails = () => {
                                         <p>{room.maximumAdultsAllow}</p></li>
                                     <li className="list-group-item"><h5 className="font-weight-bold">Maximum Childs Allow</h5>
                                         <p>{room.maximumChildsAllow}</p></li>
-                                    <li className="list-group-item"><h5 className="font-weight-bold">Property Type</h5>
+                                    <li className="list-group-item"><h5 className="font-weight-bold">Room Type</h5>
                                         <p>{room.roomsType}</p></li>
                                 </ul>
 

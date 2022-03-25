@@ -21,7 +21,7 @@ router.route('/admin/room/:id')
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteRoom);
 
 router.route('/review').put(isAuthenticatedUser, createRoomReview)
-router.route('/reviews').get(isAuthenticatedUser, getRoomReviews) 
+router.route('/reviews').get(isAuthenticatedUser, getRoomReviews)
 router.route('/reviews').delete(isAuthenticatedUser, deleteReview)
 
 

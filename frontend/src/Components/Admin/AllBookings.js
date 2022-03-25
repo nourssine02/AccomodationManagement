@@ -32,6 +32,18 @@ class AllBookings extends Component {
             }
         })
     }
+     deleteBooking = async (id) => {
+        try {
+            await axios.delete(`/admin/booking/${id}`)
+            alert('Are you sure you want to delete this ?')
+            this.getBookings()
+
+        } catch (error) {
+            console.log(error);
+
+
+        }
+    }
     render() {
         return (
             <Container>
@@ -45,7 +57,6 @@ class AllBookings extends Component {
                             <th >numberOfAdults</th>
                             <th >numberOfChilds</th>
                             <th >numberOfDays</th>
-                            <th >totalPrice</th>
                             <th >bookingStatus</th>
                             <th ></th>
                         </tr>
@@ -60,12 +71,11 @@ class AllBookings extends Component {
                                 <td>{booking.numberOfAdults}</td>
                                 <td>{booking.numberOfChilds}</td>
                                 <td>{booking.numberOfDays}</td>
-                                <td>{booking.totalPrice}</td>
                                 <td>{booking.bookingStatus}</td>
 
                                 <td>
-                                    <button type='submit' className='btn btn-success'> Update </button>&nbsp;&nbsp;
-                                    <button type='submit' className='btn btn-danger'> Delete </button>
+                                    <Link to={`/admin/UpdateBooking/${booking._id}`} className='btn btn-success' > Update </Link>&nbsp;&nbsp;
+                                    <button onClick={() => this.deleteBooking(booking._id)} className='btn btn-danger'> Delete </button>
                                 </td>
                             </tr>
 
